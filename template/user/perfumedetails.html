@@ -1,0 +1,406 @@
+{% extends 'common/base3.html' %}
+
+{% block content %}
+
+<style>
+
+.custom-container{
+    background-color:#ffffff;
+    border-radius:15px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    
+}
+
+
+/* IMAGE */
+
+.perfume-img{
+    width:100%;
+    max-width:350px;
+    height:420px;
+    object-fit:cover;
+    border-radius:12px;
+    transition:0.3s;
+}
+
+.perfume-img:hover{
+    transform:scale(1.02);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* DETAILS */
+
+.details-text p{
+    font-size:17px;
+    margin-bottom:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:576px){
+
+    .perfume-img{
+        max-width:220px;
+        height:300px;
+    }
+
+    .details-text{
+        text-align:center;
+        margin-top:20px;
+    }
+
+    .details-text p{
+        font-size:15px;
+    }
+
+    .feedback-title,
+    .review-title{
+        text-align:center;
+    }
+
+}
+
+/* TABLET */
+
+@media(min-width:577px) and (max-width:991px){
+
+    .perfume-img{
+        max-width:280px;
+        height:360px;
+    }
+
+    .details-text{
+        margin-top:20px;
+    }
+
+}
+
+/* LAPTOP & LARGE SCREENS */
+
+@media(min-width:992px){
+
+    .details-text{
+        padding-left:40px;
+    }
+    .product-section{
+    margin-top:90px !important;
+}
+
+}
+
+/* 4K SCREEN */
+
+@media(min-width:2560px){
+
+    body{
+        padding-top:50px;
+    }
+
+    .custom-container{
+        max-width:2200px;
+        border-radius:28px;
+        padding:50px !important;
+       
+    }
+    .product-section{
+    margin-top:150px !important;
+    }
+
+    /* IMAGE */
+
+    .perfume-img{
+        max-width:600px;
+        height:720px;
+        border-radius:22px;
+    }
+
+    /* DETAILS */
+
+    .details-text{
+        padding-left:70px;
+    }
+
+    .details-text h2{
+        font-size:52px;
+        margin-bottom:35px !important;
+    }
+
+    .details-text p{
+        font-size:28px;
+        line-height:1.8;
+        margin-bottom:22px;
+    }
+
+    /* FORM ELEMENTS */
+
+    .form-control,
+    .form-select{
+        height:70px;
+        font-size:24px;
+        border-radius:16px;
+        padding-left:20px;
+    }
+
+    textarea.form-control{
+        min-height:220px;
+        padding-top:18px;
+    }
+
+    label{
+        font-size:24px;
+    }
+
+    /* BUTTONS */
+
+    .btn{
+        font-size:24px;
+        padding:14px 40px;
+        border-radius:16px;
+    }
+
+    /* TITLES */
+
+    .feedback-title,
+    .review-title{
+        font-size:42px;
+        margin-bottom:35px !important;
+    }
+
+    /* REVIEW SECTION */
+
+    .border-bottom{
+        padding-bottom:30px !important;
+        margin-bottom:30px !important;
+    }
+
+    .border-bottom h5{
+        font-size:30px;
+    }
+
+    .border-bottom p{
+        font-size:24px;
+        line-height:1.8;
+    }
+}
+
+body{
+    padding-top:30px;
+}
+
+
+</style>
+
+
+
+<!-- PRODUCT CONTAINER -->
+
+<div class="container py-4 py-lg-5 mt-5 mt-lg-5 mb-5 custom-container product-section">
+
+    <div class="row align-items-start g-4 g-lg-5">
+
+        <!-- LEFT SIDE -->
+
+        <div class="col-12 col-md-6 text-center ">
+
+            <img src="{{data.perfume_image.url}}"
+                 class="perfume-img">
+
+            <div class="mt-4">
+
+                <form action="{% url 'addcart' data.id %}" method="POST">
+
+                    {% csrf_token %}
+
+                    <label class="fw-bold">
+                        Select Quantity:
+                    </label>
+
+                    <input type="number"
+                           name="quantity"
+                           class="form-control w-50 mx-auto mt-2"
+                           min="1">
+
+                    <br>
+
+                    {% if cart %}
+
+                        <button disabled
+                                class="btn btn-secondary px-4">
+                            Already in Cart
+                        </button>
+
+                    {% else %}
+
+                        <input type="submit"
+                               value="Add to Cart"
+                               class="btn btn-dark px-4">
+
+                    {% endif %}
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="col-12 col-md-6">
+
+            <div class="details-text">
+
+                <h2 class="mb-4">
+                    {{data.perfumename}}
+                </h2>
+
+                <p>
+                    <strong>Perfume Brand:</strong>
+                    {{data.perfumebrand}}
+                </p>
+
+                <p>
+                    <strong>Perfume Price:</strong>
+                    {{data.perfume_price}} ₹
+                </p>
+
+                <p>
+                    <strong>For:</strong>
+                    {{data.perfume_category.category}}
+                </p>
+
+                <p>
+                    <strong>Scent Type:</strong>
+                    {{data.perfume_scent}}
+                </p>
+
+                <p>
+                    <strong>Item Volume:</strong>
+                    {{data.perfume_volume}}
+                </p>
+
+                <p>
+                    <strong>Available Stock:</strong>
+                    {{data.perfume_stock}}
+                </p>
+
+                <p>
+                    {{data.perfume_details}}
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- FEEDBACK CONTAINER -->
+
+<div class="container py-4 mb-5 custom-container">
+
+    <h3 class="mb-4 feedback-title">
+        Give Feedback
+    </h3>
+
+    <form action="{% url 'feedback' data.id %}" method="POST">
+
+        {% csrf_token %}
+
+        <textarea name="feed"
+                  id="feedback"
+                  class="form-control mt-2"
+                  rows="5"
+                  placeholder="Write Your Feedback"
+                  required></textarea>
+
+        <br>
+
+        <label for="rating" class="fw-bold">
+            Provide Rating
+        </label>
+
+        <select name="rate"
+                id="rating"
+                class="form-select mt-2"
+                required>
+
+            <option value="">--select--</option>
+
+            {% for i in data2 %}
+
+                <option value="{{i.id}}">
+                    {{i.rating}}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br>
+
+        <input type="submit"
+               value="Submit"
+               class="btn btn-dark">
+
+    </form>
+
+</div>
+
+
+
+<!-- REVIEWS CONTAINER -->
+
+{% if data3 %}
+
+<div class="container py-4 mb-5 custom-container">
+
+    <h3 class="mb-4 review-title">
+        Reviews
+    </h3>
+
+    {% for i in data3 %}
+
+    <div class="border-bottom pb-3 mb-3">
+
+        <h5>
+            {{i.user.username}}
+        </h5>
+
+        <p>
+            {{i.description}}
+        </p>
+
+        <p>
+             {{i.rate.rating}}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+
+<!-- ALERT MESSAGE -->
+
+{% if messages %}
+
+    {% for msg in messages %}
+
+    <script>
+        alert('{{msg}}');
+    </script>
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}

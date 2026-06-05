@@ -1,0 +1,418 @@
+
+{% extends 'common/base3.html' %}
+
+{% block content %}
+
+<style>
+
+body{
+    padding-top:40px;
+    background-color:#f8f9fa;
+}
+
+/* PROFILE CONTAINER */
+
+.profile-container{
+    max-width:750px;
+    background-color:#ffffff;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    position:relative;
+    padding:35px !important;
+    overflow:hidden;
+}
+
+/* EDIT BUTTON */
+
+.edit-btn{
+    position:absolute;
+    top:25px;
+    right:25px;
+    text-decoration:none;
+    background-color:#000;
+    color:#fff;
+    padding:8px 20px;
+    border-radius:8px;
+    transition:0.3s;
+    font-size:14px;
+    font-weight:600;
+}
+
+.edit-btn:hover{
+    background-color:#333;
+    color:#fff;
+}
+
+/* PROFILE IMAGE */
+
+.profile-img{
+    width:130px;
+    height:130px;
+    object-fit:cover;
+    border-radius:50%;
+    border:3px solid #000;
+}
+
+/* PROFILE NAME */
+
+.profile-name{
+    margin-top:18px;
+    font-size:30px;
+    font-weight:700;
+}
+
+/* DETAILS */
+
+.profile-details{
+    margin-top:30px;
+}
+
+.detail-box{
+    border-bottom:1px solid #dcdcdc;
+    padding:14px 0;
+}
+
+.detail-box strong{
+    display:block;
+    margin-bottom:5px;
+    color:#000;
+    font-size:16px;
+}
+
+.detail-box span{
+    color:#555;
+    font-size:15px;
+    word-break:break-word;
+}
+
+/* HOME BUTTON */
+
+.home-btn{
+    text-decoration:none;
+    background-color:#000;
+    color:#fff;
+    padding:10px 24px;
+    border-radius:8px;
+    display:inline-block;
+    margin-top:25px;
+    transition:0.3s;
+}
+
+.home-btn:hover{
+    background-color:#333;
+    color:#fff;
+}
+
+/* TABLET */
+
+@media(min-width:577px) and (max-width:991px){
+
+    .profile-container{
+        max-width:680px;
+        padding:30px !important;
+    }
+
+    .profile-img{
+        width:120px;
+        height:120px;
+    }
+
+    .profile-name{
+        font-size:28px;
+    }
+
+    .detail-box strong{
+        font-size:15px;
+    }
+
+    .detail-box span{
+        font-size:14px;
+    }
+
+}
+
+/* NORMAL LAPTOP */
+
+@media(min-width:992px) and (max-width:1439px){
+
+    .profile-container{
+        max-width:850px;
+        padding:40px !important;
+    }
+
+    .profile-img{
+        width:145px;
+        height:145px;
+    }
+
+    .profile-name{
+        font-size:34px;
+    }
+
+    .detail-box{
+        padding:18px 0;
+    }
+
+    .detail-box strong{
+        font-size:18px;
+    }
+
+    .detail-box span{
+        font-size:16px;
+    }
+
+    .edit-btn{
+        font-size:15px;
+        padding:10px 22px;
+    }
+
+}
+
+/* LARGE LAPTOP */
+
+@media(min-width:1440px){
+
+    .profile-container{
+        max-width:1100px;
+        padding:55px !important;
+        border-radius:24px;
+    }
+
+    .profile-img{
+        width:180px;
+        height:180px;
+        border-width:4px;
+    }
+
+    .profile-name{
+        font-size:42px;
+        margin-top:24px;
+    }
+
+    .profile-details{
+        margin-top:45px;
+    }
+
+    .detail-box{
+        padding:22px 0;
+    }
+
+    .detail-box strong{
+        font-size:22px;
+        margin-bottom:8px;
+    }
+
+    .detail-box span{
+        font-size:19px;
+    }
+
+    .edit-btn{
+        padding:12px 28px;
+        font-size:17px;
+        border-radius:12px;
+    }
+
+}
+
+/* 4K SCREEN */
+
+@media(min-width:2560px){
+
+    body{
+        padding-top:70px;
+    }
+
+    .profile-container{
+        max-width:1700px;
+        padding:80px !important;
+        border-radius:34px;
+    }
+
+    .profile-img{
+        width:260px;
+        height:260px;
+        border-width:6px;
+    }
+
+    .profile-name{
+        font-size:64px;
+        margin-top:34px;
+    }
+
+    .profile-details{
+        margin-top:60px;
+    }
+
+    .detail-box{
+        padding:34px 0;
+    }
+
+    .detail-box strong{
+        font-size:32px;
+        margin-bottom:12px;
+    }
+
+    .detail-box span{
+        font-size:28px;
+        line-height:1.8;
+    }
+
+    .edit-btn{
+        top:45px;
+        right:45px;
+        padding:18px 42px;
+        font-size:26px;
+        border-radius:16px;
+    }
+
+    .home-btn{
+        padding:18px 40px;
+        font-size:26px;
+        border-radius:16px;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:576px){
+
+    body{
+        padding-top:20px;
+    }
+
+    .profile-container{
+        padding:20px !important;
+        border-radius:14px;
+    }
+
+    .edit-btn{
+        position:static;
+        display:inline-block;
+        margin-bottom:20px;
+        font-size:13px;
+        padding:8px 18px;
+    }
+
+    .profile-img{
+        width:100px;
+        height:100px;
+    }
+
+    .profile-name{
+        font-size:24px;
+    }
+
+    .profile-details{
+        margin-top:20px;
+    }
+
+    .detail-box{
+        padding:12px 0;
+    }
+
+    .detail-box strong{
+        font-size:14px;
+    }
+
+    .detail-box span{
+        font-size:13px;
+    }
+
+}
+
+</style>
+
+
+
+<div class="container mt-5 mb-5 p-4 profile-container">
+
+    <!-- EDIT BUTTON -->
+
+    <div class="text-end">
+
+        <a href="{% url 'profileedit' %}"
+           class="edit-btn">
+
+           Edit
+
+        </a>
+
+    </div>
+
+
+
+    <!-- PROFILE IMAGE -->
+
+    <div class="text-center">
+
+        <img src="{{i.profilephoto.url}}"
+             class="profile-img">
+
+        <h2 class="profile-name">
+            {{i.user.first_name}} {{i.user.last_name}}
+        </h2>
+
+    </div>
+
+
+
+    <!-- DETAILS -->
+
+    <div class="profile-details">
+
+        <div class="detail-box">
+            <strong>Email</strong>
+            <span>{{i.user.email}}</span>
+        </div>
+
+        <div class="detail-box">
+            <strong>Gender</strong>
+            <span>{{i.gender}}</span>
+        </div>
+
+        <div class="detail-box">
+            <strong>Address</strong>
+            <span>{{i.address}}</span>
+        </div>
+
+        <div class="detail-box">
+            <strong>City</strong>
+            <span>{{i.city}}</span>
+        </div>
+
+        <div class="detail-box">
+            <strong>State</strong>
+            <span>{{i.state}}</span>
+        </div>
+
+        <div class="detail-box">
+            <strong>Postal Code</strong>
+            <span>{{i.postalcode}}</span>
+        </div>
+
+        <div class="detail-box">
+            <strong>Phone Number</strong>
+            <span>{{i.phonenumber}}</span>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{% if messages %}
+
+    {% for msg in messages %}
+
+    <script>
+        alert('{{msg}}');
+    </script>
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}
+

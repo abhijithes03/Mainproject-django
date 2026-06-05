@@ -1,0 +1,407 @@
+
+{% extends 'common/base5.html' %}
+
+{% block content %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<style>
+
+.orders-container{
+    min-height:100vh;
+    background:#f5f5f5;
+    padding:40px 20px;
+}
+
+.orders-title{
+    text-align:center;
+    font-size:40px;
+    font-weight:700;
+    margin-bottom:35px;
+    color:#111;
+}
+
+/* FILTER BUTTONS */
+
+.filter-wrapper{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    margin-bottom:35px;
+}
+
+.filter-btn{
+    padding:12px 24px;
+    border:none;
+    border-radius:12px;
+    background:#000;
+    color:#fff;
+    font-size:15px;
+    font-weight:600;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active{
+    background:#d4a15f;
+    color:#000;
+    transform:translateY(-2px);
+}
+
+/* TABLE */
+
+.table-wrapper{
+    overflow-x:auto;
+    background:#fff;
+    border-radius:22px;
+    padding:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+}
+
+.orders-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+.orders-table thead{
+    background:#000;
+}
+
+.orders-table th{
+    color:#fff;
+    padding:18px 14px;
+    text-align:center;
+    font-size:15px;
+    font-weight:600;
+}
+
+.orders-table td{
+    padding:18px 14px;
+    text-align:center;
+    border-bottom:1px solid #eee;
+    font-size:14px;
+    vertical-align:middle;
+}
+
+.orders-table tbody tr:hover{
+    background:#faf7f2;
+}
+
+/* STATUS */
+
+.status-badge{
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:600;
+    display:inline-block;
+}
+
+.pending{
+    background:#fff3cd;
+    color:#856404;
+}
+
+.processed{
+    background:#d1ecf1;
+    color:#0c5460;
+}
+
+.completed{
+    background:#d4edda;
+    color:#155724;
+}
+
+.cancelled{
+    background:#f8d7da;
+    color:#721c24;
+}
+
+/* ACTION BUTTONS */
+
+.action-btn{
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    display:inline-block;
+    transition:0.3s;
+}
+
+.details-btn{
+    background:#000;
+    color:#fff;
+}
+
+.details-btn:hover{
+    background:#d4a15f;
+    color:#000;
+}
+
+.complete-btn{
+    background:#198754;
+    color:#fff;
+}
+
+.complete-btn:hover{
+    background:#157347;
+}
+
+.cancel-btn{
+    background:#dc3545;
+    color:#fff;
+}
+
+.cancel-btn:hover{
+    background:#bb2d3b;
+}
+
+.btn-group{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* ADMIN BUTTON */
+
+.admin-home{
+    text-align:center;
+    margin-top:35px;
+}
+
+.admin-btn{
+    display:inline-block;
+    padding:14px 28px;
+    border-radius:12px;
+    background:#000;
+    color:#fff;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.admin-btn:hover{
+    background:#d4a15f;
+    color:#000;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .orders-title{
+        font-size:30px;
+    }
+
+    .filter-btn{
+        width:100%;
+    }
+
+    .table-wrapper{
+        padding:10px;
+    }
+
+}
+
+</style>
+
+<div class="orders-container">
+
+    <h2 class="orders-title">
+        View Orders
+    </h2>
+
+    <!-- FILTER BUTTONS -->
+
+    <div class="filter-wrapper">
+
+        <a href="?status=all">
+            <button class="filter-btn">All</button>
+        </a>
+
+        <a href="?status=pending">
+            <button class="filter-btn">Pending</button>
+        </a>
+
+        <a href="?status=Processed">
+            <button class="filter-btn">Processed</button>
+        </a>
+
+        <a href="?status=Completed">
+            <button class="filter-btn">Completed</button>
+        </a>
+
+        <a href="?status=Cancelled">
+            <button class="filter-btn">Cancelled</button>
+        </a>
+
+    </div>
+
+    <!-- TABLE -->
+
+    <div class="table-wrapper">
+
+        <table class="orders-table">
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Total Amount</th>
+                    <th>Payment Status</th>
+                    <th>Order Status</th>
+                    <th>Order Date</th>
+                    <th>Delivery Date</th>
+                    <th>User Name</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for i in data %}
+
+                <tr>
+
+                    <td>{{i.id}}</td>
+
+                    <td>₹ {{i.totalamount}}</td>
+
+                    <td>{{i.paymentstatus}}</td>
+
+                    <td>
+
+                        {% if i.orderstatus == 'pending' %}
+                            <span class="status-badge pending">
+                                Pending
+                            </span>
+
+                        {% elif i.orderstatus == 'Processed' %}
+                            <span class="status-badge processed">
+                                Processed
+                            </span>
+
+                        {% elif i.orderstatus == 'Completed' %}
+                            <span class="status-badge completed">
+                                Completed
+                            </span>
+
+                        {% elif i.orderstatus == 'Cancelled' %}
+                            <span class="status-badge cancelled">
+                                Cancelled
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{i.orderdate}}</td>
+
+                    <td>{{i.deliverydate}}</td>
+
+                    <td>{{i.user.username}}</td>
+
+                    <td>
+
+                        {% if i.orderstatus == 'pending' %}
+
+                            <a href="{% url 'vodetails' i.id %}"
+                               class="action-btn details-btn">
+
+                                Details
+
+                            </a>
+
+                        {% elif i.orderstatus == 'Processed' %}
+
+                            <div class="btn-group">
+
+                                <form action="{% url 'complete' i.id %}" method="POST">
+
+                                    {% csrf_token %}
+
+                                    <input type="submit"
+                                           value="Complete"
+                                           class="action-btn complete-btn">
+
+                                </form>
+
+                                <form action="{% url 'cancel' i.id %}" method="POST">
+
+                                    {% csrf_token %}
+
+                                    <input type="submit"
+                                           value="Cancel"
+                                           class="action-btn cancel-btn">
+
+                                </form>
+
+                            </div>
+
+                        {% else %}
+
+                            <label>Nill</label>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <!-- ADMIN HOME -->
+
+    <div class="admin-home">
+
+        <a href="{% url 'mgrhome' %}" class="admin-btn">
+            Admin Home
+        </a>
+
+    </div>
+
+</div>
+
+<!-- MESSAGE ALERT -->
+
+{% if messages %}
+    {% for msg in messages %}
+        <script>
+            alert('{{msg}}');
+        </script>
+    {% endfor %}
+{% endif %}
+
+<!-- ACTIVE FILTER -->
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search);
+const status = urlParams.get('status') || 'all';
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+
+    if(btn.parentElement.href.includes(status)){
+        btn.classList.add('active');
+    }
+
+});
+
+</script>
+
+{% endblock %}
+

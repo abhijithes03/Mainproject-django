@@ -1,0 +1,134 @@
+
+{% extends 'common/base5.html' %}
+
+{% block content %}
+
+<style>
+
+.rating-container{
+    min-height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f5f5f5;
+    padding:40px 20px;
+}
+
+.rating-card{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    padding:45px 40px;
+    border-radius:22px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.12);
+}
+
+.rating-title{
+    text-align:center;
+    font-size:34px;
+    font-weight:700;
+    margin-bottom:35px;
+    color:#111;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-label{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:12px;
+    color:#333;
+}
+
+.form-input{
+    width:100%;
+    padding:15px 18px;
+    border:1px solid #ccc;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+    transition:0.3s;
+}
+
+.form-input:focus{
+    border-color:#d4a15f;
+    box-shadow:0 0 8px rgba(212,161,95,0.4);
+}
+
+.submit-btn{
+    width:100%;
+    margin-top:28px;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#000;
+    color:#fff;
+    font-size:18px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.submit-btn:hover{
+    background:#d4a15f;
+    color:#000;
+    transform:translateY(-2px);
+}
+
+/* MOBILE */
+
+@media(max-width:576px){
+
+    .rating-card{
+        padding:35px 25px;
+    }
+
+    .rating-title{
+        font-size:28px;
+    }
+
+}
+
+</style>
+
+<div class="rating-container">
+
+    <div class="rating-card">
+
+        <h2 class="rating-title">
+            Add Ratings
+        </h2>
+
+        <form action="{% url 'rate' %}" method="POST">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+
+                <label for="rate" class="form-label">
+                    Rating
+                </label>
+
+                <input type="text"
+                       name="rate"
+                       id="rate"
+                       class="form-input"
+                       placeholder="Enter the ratings"
+                       required>
+
+            </div>
+
+            <input type="submit"
+                   value="Submit"
+                   class="submit-btn">
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

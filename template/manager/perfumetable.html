@@ -1,0 +1,224 @@
+
+{% extends 'common/base5.html' %}
+
+{% block content %}
+
+<style>
+
+.table-container{
+    padding:40px 20px;
+    background:#f5f5f5;
+    min-height:100vh;
+}
+
+.table-title{
+    text-align:center;
+    font-size:38px;
+    font-weight:700;
+    margin-bottom:35px;
+    color:#111;
+}
+
+.table-wrapper{
+    overflow-x:auto;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.1);
+    padding:20px;
+}
+
+.perfume-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1200px;
+}
+
+.perfume-table thead{
+    background:#000;
+}
+
+.perfume-table th{
+    color:#fff;
+    padding:18px 14px;
+    text-align:center;
+    font-size:16px;
+    font-weight:600;
+}
+
+.perfume-table td{
+    padding:18px 14px;
+    text-align:center;
+    border-bottom:1px solid #e5e5e5;
+    font-size:15px;
+    color:#333;
+    vertical-align:middle;
+}
+
+.perfume-table tbody tr:hover{
+    background:#faf7f2;
+}
+
+.perfume-img{
+    width:90px;
+    height:120px;
+    object-fit:cover;
+    border-radius:12px;
+    border:1px solid #ddd;
+}
+
+.action-btn{
+    text-decoration:none;
+    padding:10px 18px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+    display:inline-block;
+}
+
+.delete-btn{
+    background:#dc3545;
+    color:#fff;
+}
+
+.delete-btn:hover{
+    background:#b02a37;
+    color:#fff;
+}
+
+.edit-btn{
+    background:#d4a15f;
+    color:#000;
+}
+
+.edit-btn:hover{
+    background:#b88646;
+    color:#fff;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .table-title{
+        font-size:28px;
+    }
+
+    .table-wrapper{
+        padding:10px;
+    }
+
+    .perfume-table th,
+    .perfume-table td{
+        font-size:14px;
+        padding:12px 10px;
+    }
+
+    .perfume-img{
+        width:70px;
+        height:95px;
+    }
+
+}
+
+</style>
+
+<div class="table-container">
+
+    <h2 class="table-title">
+        View Perfumes
+    </h2>
+
+    <div class="table-wrapper">
+
+        <table class="perfume-table">
+
+            <thead>
+
+                <tr>
+                    <th>Perfume Name</th>
+                    <th>Perfume Brand</th>
+                    <th>Perfume Details</th>
+                    <th>Perfume Price</th>
+                    <th>Perfume Image</th>
+                    <th>Perfume Stock</th>
+                    <th>Perfume Scent</th>
+                    <th>Perfume Volume</th>
+                    <th>Perfume Category</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for i in data %}
+
+                <tr>
+
+                    <td>{{i.perfumename}}</td>
+
+                    <td>{{i.perfumebrand}}</td>
+
+                    <td>{{i.perfume_details}}</td>
+
+                    <td>₹ {{i.perfume_price}}</td>
+
+                    <td>
+
+                        {% if i.perfume_image %}
+
+                            <img src="{{i.perfume_image.url}}" 
+                                 alt=""
+                                 class="perfume-img">
+
+                        {% endif %}
+
+                    </td>
+
+                    <td>{{i.perfume_stock}}</td>
+
+                    <td>{{i.perfume_scent}}</td>
+
+                    <td>{{i.perfume_volume}}</td>
+
+                    <td>{{i.perfume_category.category}}</td>
+
+                    <td>
+
+                        <a href="{% url 'delete' i.id %}"
+                           class="action-btn delete-btn"
+                           onclick="return confirm('Delete {{i.perfumename}} data?')">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'edit' i.id %}"
+                           class="action-btn edit-btn">
+
+                            Edit
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

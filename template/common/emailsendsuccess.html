@@ -1,0 +1,30 @@
+{% extends 'common/base4.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5" style="min-height: calc(100vh - 95px);">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-sm border-0 mx-auto" style="max-width: 460px; width: 100%;">
+                <div class="card-body p-4 text-center">
+                    <div class="mb-4">
+                        <i class="fa-solid fa-envelope-circle-check fa-3x text-success"></i>
+                    </div>
+                    <h2 class="card-title mb-3">Email sent successfully</h2>
+                    <p class="text-muted mb-4">A password reset link has been sent to your email address. Check your inbox and follow the instructions to continue.</p>
+
+                    {% if messages %}
+                        {% for msg in messages %}
+                            <div class="alert alert-{{ msg.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                                {{ msg }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <a href="{% url 'home' %}" class="btn btn-dark w-100">Return to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

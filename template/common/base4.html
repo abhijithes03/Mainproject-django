@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSYRA</title>
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- GOOGLE FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* BODY */
+
+body{
+    padding-top:95px;
+    background-color:#ffffff;
+    overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.navbar{
+    padding:14px 0;
+    background-color:#000 !important;
+    box-shadow:0 5px 18px rgba(0,0,0,0.18);
+}
+
+.navbar .container-fluid{
+    padding-left:25px;
+    padding-right:25px;
+}
+
+/* LOGO */
+
+.logo{
+    font-family:'Monoton', monospace;
+    font-size:34px;
+    font-weight:700;
+    letter-spacing:-3px;
+    text-transform:uppercase;
+    line-height:1;
+}
+
+/* NAV LINKS */
+
+.navbar-nav .nav-link{
+    color:#ffffff !important;
+    font-size:16px;
+    font-weight:500;
+    margin:0 8px;
+    transition:0.3s;
+}
+
+.navbar-nav .nav-link:hover{
+    color:#d4a15f !important;
+}
+
+/* NAV BUTTONS */
+
+.nav-btn{
+    padding:9px 22px;
+    border-radius:10px;
+    font-size:14px;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.register-btn{
+    background-color:#d4a15f;
+    border:none;
+    color:#000;
+}
+
+.register-btn:hover{
+    background-color:#b88646;
+    color:#fff;
+}
+
+.login-btn:hover{
+    background-color:#fff;
+    color:#000 !important;
+}
+
+/* ================= CAROUSEL ================= */
+
+.carousel-wrapper{
+    margin-top:-24px;
+    margin-bottom:-8px;
+}
+
+.carousel-item{
+    position:relative;
+    overflow:hidden;
+}
+
+.carousel-item img{
+    width:100%;
+    height:75vh;
+    object-fit:cover;
+    object-position:center;
+}
+
+/* SHOP BUTTON */
+
+.shop-btn{
+    position:absolute;
+    bottom:22%;
+    left:7%;
+    background-color:#d4a15f;
+    color:#000;
+    text-decoration:none;
+    font-size:20px;
+    font-style:normal;
+    font-family: Arial, sans-serif;
+    font-weight:400;
+    padding:14px 34px;
+    border-radius:10px;
+    transition:0.3s;
+    letter-spacing:0.5px;
+    z-index:5;
+}
+
+.shop-btn:hover{
+    background-color:#b88646;
+    color:#fff;
+    transform:translateY(-2px);
+}
+
+/* CAROUSEL TEXT */
+
+.carousel-heading{
+    position:absolute;
+    top:14%;
+    left:7%;
+    font-family: Arial, sans-serif;
+    font-style:normal;
+    font-size:88px;
+    font-weight:400;
+    line-height:0.95;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    z-index:5;
+}
+
+.carousel-heading.white-text{
+    color:#f5f5f5;
+}
+
+.carousel-heading.pink-text{
+    color:#7b1731;
+}
+
+.carousel-heading.blue-text{
+    color:#0f3f79;
+}
+
+/* FOOTER */
+
+.main-footer{
+    background-color:#f8f8f8;
+    margin-top:60px;
+}
+
+.footer-top{
+    padding:60px 0 30px;
+}
+
+.footer-logo{
+    display:inline-block;
+    margin-bottom:18px;
+}
+
+.footer-title{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:20px;
+    color:#111;
+}
+
+.footer-text{
+    color:#555;
+    line-height:1.8;
+    font-size:15px;
+}
+
+.footer-links a{
+    display:block;
+    color:#555;
+    text-decoration:none;
+    margin-bottom:12px;
+    transition:0.3s;
+    font-size:15px;
+}
+
+.footer-links a:hover{
+    color:#000;
+    padding-left:4px;
+}
+
+/* SOCIAL */
+
+.social-footer{
+    background-color:#292727;
+    padding:18px 0;
+}
+
+.social-icons a{
+    color:#fff;
+    font-size:20px;
+    margin:0 10px;
+    transition:0.3s;
+}
+
+.social-icons a:hover{
+    color:#d4a15f;
+}
+
+/* COPYRIGHT */
+
+.copyright{
+    background-color:#000;
+    color:#fff;
+    text-align:center;
+    padding:18px 10px;
+    font-size:15px;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:576px){
+
+    body{
+        padding-top:82px;
+    }
+
+    .navbar{
+        padding:10px 0;
+    }
+
+    .navbar .container-fluid{
+        padding-left:15px;
+        padding-right:15px;
+    }
+
+    .logo{
+        font-size:24px;
+        letter-spacing:-2px;
+    }
+
+    .navbar-collapse{
+        background-color:#000;
+        padding:18px;
+        border-radius:12px;
+        margin-top:12px;
+    }
+
+    .navbar-nav{
+        text-align:center;
+    }
+
+    .navbar-nav .nav-link{
+        margin:10px 0;
+        font-size:15px;
+    }
+
+    .nav-buttons{
+        flex-direction:column;
+        width:100%;
+        gap:12px;
+        margin-top:15px;
+    }
+
+    .nav-btn{
+        width:100%;
+        text-align:center;
+    }
+
+    .carousel-item img{
+        height:260px;
+    }
+
+    .shop-btn{
+        bottom:12%;
+        left:50%;
+        transform:translateX(-50%);
+        font-size:10px;
+        padding:7px 14px;
+        white-space:nowrap;
+        border-radius:7px;
+    }
+
+    .carousel-heading{
+        top:14%;
+        left:6%;
+        font-size:34px;
+        line-height:1;
+    }
+
+    .footer-top{
+        text-align:center;
+        padding:40px 20px 20px;
+    }
+
+    .footer-title{
+        margin-top:20px;
+    }
+
+    .social-icons a{
+        font-size:18px;
+        margin:0 7px;
+    }
+
+}
+
+/* ================= TABLET ================= */
+
+@media(min-width:577px) and (max-width:991px){
+
+    body{
+        padding-top:88px;
+    }
+
+    .logo{
+        font-size:28px;
+    }
+
+    .navbar-collapse{
+        background-color:#000;
+        padding:20px;
+        border-radius:12px;
+        margin-top:15px;
+    }
+
+    .navbar-nav{
+        text-align:center;
+    }
+
+    .nav-buttons{
+        justify-content:center;
+        margin-top:15px;
+    }
+
+    .carousel-item img{
+        height:55vh;
+        min-height:420px;
+    }
+
+    .shop-btn{
+        bottom:16%;
+        left:8%;
+        font-size:14px;
+        padding:10px 22px;
+    }
+
+    .carousel-heading{
+        top:14%;
+        left:7%;
+        font-size:58px;
+    }
+
+    .footer-top{
+        padding:50px 20px 25px;
+    }
+
+}
+
+/* ================= LAPTOP ================= */
+
+@media(min-width:992px) and (max-width:1439px){
+
+    .carousel-item img{
+        height:78vh;
+        min-height:550px;
+        max-height:700px;
+    }
+
+    .shop-btn{
+        font-size:18px;
+        padding:13px 30px;
+    }
+
+    .carousel-heading{
+        font-size:74px;
+    }
+
+}
+
+/* ================= DESKTOP ================= */
+
+@media(min-width:1440px) and (max-width:2559px){
+
+    .navbar{
+        padding:18px 0;
+    }
+
+    .logo{
+        font-size:40px;
+    }
+
+    .navbar-nav .nav-link{
+        font-size:18px;
+    }
+
+    .carousel-item img{
+        height:82vh;
+        min-height:750px;
+        max-height:950px;
+    }
+
+    .shop-btn{
+        bottom:24%;
+        left:9%;
+        font-size:24px;
+        padding:18px 42px;
+    }
+
+    .footer-title{
+        font-size:22px;
+    }
+
+    .footer-text,
+    .footer-links a{
+        font-size:17px;
+    }
+
+}
+
+/* ================= 4K ================= */
+
+@media(min-width:2560px){
+
+    body{
+        padding-top:140px;
+    }
+
+    .navbar{
+        padding:28px 0;
+    }
+
+    .navbar .container-fluid{
+        padding-left:70px;
+        padding-right:70px;
+    }
+
+    .logo{
+        font-size:64px;
+        letter-spacing:-5px;
+    }
+
+    .navbar-nav .nav-link{
+        font-size:30px;
+        margin:0 18px;
+    }
+
+    .nav-btn{
+        font-size:24px;
+        padding:16px 38px;
+        border-radius:14px;
+    }
+
+    .carousel-item img{
+        height:90vh;
+        min-height:1100px;
+    }
+
+    .shop-btn{
+        bottom:25%;
+        left:8%;
+        font-size:42px;
+        padding:24px 55px;
+        border-radius:18px;
+    }
+
+    .carousel-heading{
+        font-size:150px;
+    }
+
+    .footer-top{
+        padding:100px 70px 60px;
+    }
+
+    .footer-title{
+        font-size:34px;
+    }
+
+    .footer-text,
+    .footer-links a{
+        font-size:26px;
+        line-height:2;
+    }
+
+    .social-icons a{
+        font-size:38px;
+        margin:0 18px;
+    }
+
+    .copyright{
+        font-size:24px;
+        padding:28px;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+    <div class="container-fluid">
+
+        <!-- LOGO -->
+
+        <a class="navbar-brand logo" href="#">
+
+            <span style="color:#ff0000;">E</span>
+            <span style="color:#ff0000;">S</span>
+            <span style="color:#ff0000;">S</span>
+            <span style="color:#ff9900;">Y</span>
+            <span style="color:#ff9900;">R</span>
+            <span style="color:#ff9900;">A</span>
+
+        </a>
+
+        <!-- TOGGLER -->
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavbar">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- NAV CONTENT -->
+
+        <div class="collapse navbar-collapse"
+             id="collapsibleNavbar">
+
+            <!-- LEFT LINKS -->
+
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer">Contact</a>
+                </li>
+
+            </ul>
+
+            <!-- RIGHT BUTTONS -->
+
+        
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- CAROUSEL -->
+
+</div>
+
+{% block content %}
+{% endblock %}
+
+
+
+<!-- FOOTER -->
+
+
+    <!-- SOCIAL -->
+
+    <div class="social-footer">
+
+        <div class="container text-center social-icons">
+
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-google"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+
+        </div>
+
+    </div>
+
+    <!-- COPYRIGHT -->
+
+    <div class="copyright">
+
+        © 2026 ESSYRA. All Rights Reserved.
+
+    </div>
+
+</footer>
+
+</body>
+</html>

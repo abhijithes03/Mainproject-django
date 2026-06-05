@@ -1,0 +1,48 @@
+{%extends 'common/base1.html'%}
+{%block content%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+         .card img {
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card {
+            transition: 0.3s;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .custom-container{
+            background-color: rgb(201, 213, 218);
+            border-radius: 10px;   /* optional - makes it look better */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            
+        }
+        
+    </style>
+</head>
+
+<body>
+    <a href="{%  url 'register' %}"></a>
+    <a href="{% url 'mgrhome'%}"></a>
+    <a href="{% url 'userhome'%}"></a>
+    <a href="{% url 'login'%}"></a>
+
+    <a href="{%url 'viewall'%}" class="btn"></a>
+
+
+     
+
+{%endblock%}

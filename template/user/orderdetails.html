@@ -1,0 +1,619 @@
+{% extends 'common/base3.html' %}
+
+{% block content %}
+
+<style>
+
+body{
+    background-color:#f8f9fa;
+    padding-top: 40px;
+}
+
+/* CONTAINER */
+
+.order-container{
+    min-height:75vh;
+    padding:40px 15px;
+}
+
+/* MAIN TITLE */
+
+.page-title{
+    font-size:36px;
+    font-weight:700;
+    margin-bottom:35px;
+    color:#111;
+}
+
+/* CARDS */
+
+.custom-card{
+    background-color:#ffffff;
+    border-radius:22px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.12);
+    padding:25px;
+}
+
+/* ITEMS */
+
+.item-card{
+    background-color:#f8f8f8;
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:20px;
+    transition:0.3s;
+}
+
+.item-card:hover{
+    transform:translateY(-3px);
+}
+
+.item-box{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* IMAGE */
+
+.item-img{
+    width:100px;
+    height:100px;
+    object-fit:cover;
+    border-radius:14px;
+}
+
+/* ITEM DETAILS */
+
+.item-name{
+    font-size:22px;
+    font-weight:700;
+    color:#111;
+}
+
+.item-qty{
+    margin-top:8px;
+    font-size:16px;
+    font-weight:600;
+    color:#666;
+}
+
+/* SUMMARY */
+
+.order-summary{
+    position:sticky;
+    top:100px;
+}
+
+.summary-title{
+    font-size:28px;
+    font-weight:700;
+    margin-bottom:25px;
+    color:#111;
+}
+
+.summary-box{
+    border-bottom:1px solid #e5e5e5;
+    padding:15px 0;
+}
+
+.summary-label{
+    font-size:14px;
+    font-weight:600;
+    color:#666;
+    margin-bottom:6px;
+}
+
+.summary-value{
+    font-size:18px;
+    font-weight:700;
+    color:#111;
+    word-break:break-word;
+}
+
+/* STATUS COLORS */
+
+.pending{
+    color:orange;
+}
+
+.delivered{
+    color:green;
+}
+
+.cancelled{
+    color:red;
+}
+
+/* BUTTON */
+
+.cancel-btn{
+    width:100%;
+    border:none;
+    background-color:black;
+    color:white;
+    padding:14px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:600;
+    margin-top:25px;
+    transition:0.3s;
+}
+
+.cancel-btn:hover{
+    background-color:#333;
+}
+
+/* EMPTY */
+
+.empty-text{
+    font-size:24px;
+    font-weight:600;
+    color:#666;
+}
+
+/* TABLET */
+
+@media(min-width:577px) and (max-width:991px){
+
+    .order-container{
+        padding:35px 20px;
+    }
+
+    .page-title{
+        font-size:32px;
+    }
+
+    .custom-card{
+        padding:22px;
+    }
+
+    .item-img{
+        width:90px;
+        height:90px;
+    }
+
+    .item-name{
+        font-size:20px;
+    }
+
+    .item-qty{
+        font-size:15px;
+    }
+
+    .summary-title{
+        font-size:26px;
+    }
+
+    .summary-value{
+        font-size:17px;
+    }
+
+    .order-summary{
+        position:static;
+        margin-top:20px;
+    }
+
+}
+
+/* NORMAL LAPTOP */
+
+@media(min-width:992px) and (max-width:1439px){
+
+    .order-container{
+        max-width:1400px;
+        padding:50px 25px;
+    }
+
+    .page-title{
+        font-size:42px;
+        margin-bottom:40px;
+    }
+
+    .custom-card{
+        padding:30px;
+        border-radius:24px;
+    }
+
+    .item-card{
+        padding:22px;
+        border-radius:20px;
+    }
+
+    .item-img{
+        width:120px;
+        height:120px;
+    }
+
+    .item-name{
+        font-size:26px;
+    }
+
+    .item-qty{
+        font-size:18px;
+    }
+
+    .summary-title{
+        font-size:32px;
+    }
+
+    .summary-label{
+        font-size:15px;
+    }
+
+    .summary-value{
+        font-size:20px;
+    }
+
+    .cancel-btn{
+        font-size:17px;
+        padding:15px;
+    }
+
+}
+
+/* LARGE LAPTOP */
+
+@media(min-width:1440px){
+
+    .order-container{
+        max-width:1700px;
+        padding:60px 30px;
+    }
+
+    .page-title{
+        font-size:54px;
+        margin-bottom:50px;
+    }
+
+    .custom-card{
+        padding:40px;
+        border-radius:28px;
+    }
+
+    .item-card{
+        padding:28px;
+        border-radius:24px;
+        margin-bottom:28px;
+    }
+
+    .item-box{
+        gap:28px;
+    }
+
+    .item-img{
+        width:160px;
+        height:160px;
+        border-radius:18px;
+    }
+
+    .item-name{
+        font-size:34px;
+    }
+
+    .item-qty{
+        font-size:22px;
+        margin-top:12px;
+    }
+
+    .summary-title{
+        font-size:40px;
+        margin-bottom:35px;
+    }
+
+    .summary-box{
+        padding:20px 0;
+    }
+
+    .summary-label{
+        font-size:18px;
+    }
+
+    .summary-value{
+        font-size:24px;
+    }
+
+    .cancel-btn{
+        font-size:20px;
+        padding:18px;
+        border-radius:14px;
+        margin-top:35px;
+    }
+
+}
+
+/* 4K SCREEN */
+
+@media(min-width:2560px){
+
+    .order-container{
+        max-width:2350px;
+        padding:180px 40px 90px;
+    }
+
+    .page-title{
+        font-size:78px;
+        margin-bottom:70px;
+        
+    }
+
+    .custom-card{
+        padding:60px;
+        border-radius:36px;
+    }
+
+    .item-card{
+        padding:40px;
+        border-radius:32px;
+        margin-bottom:40px;
+    }
+
+    .item-box{
+        gap:40px;
+    }
+
+    .item-img{
+        width:240px;
+        height:240px;
+        border-radius:24px;
+    }
+
+    .item-name{
+        font-size:52px;
+    }
+
+    .item-qty{
+        font-size:34px;
+        margin-top:18px;
+    }
+
+    .summary-title{
+        font-size:60px;
+        margin-bottom:45px;
+    }
+
+    .summary-box{
+        padding:28px 0;
+    }
+
+    .summary-label{
+        font-size:26px;
+        margin-bottom:10px;
+    }
+
+    .summary-value{
+        font-size:34px;
+    }
+
+    .cancel-btn{
+        font-size:30px;
+        padding:24px;
+        border-radius:18px;
+        margin-top:45px;
+    }
+
+    .empty-text{
+        font-size:46px;
+    }
+
+}
+
+/* MOBILE */
+
+@media(max-width:576px){
+
+    .order-container{
+        padding:25px 12px;
+    }
+
+    .page-title{
+        font-size:28px;
+        margin-bottom:25px;
+    }
+
+    .custom-card{
+        padding:18px;
+        border-radius:16px;
+    }
+
+    .item-card{
+        padding:16px;
+        border-radius:14px;
+    }
+
+    .item-box{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+
+    .item-img{
+        width:80px;
+        height:80px;
+        border-radius:12px;
+    }
+
+    .item-name{
+        font-size:18px;
+    }
+
+    .item-qty{
+        font-size:14px;
+    }
+
+    .summary-title{
+        font-size:24px;
+    }
+
+    .summary-label{
+        font-size:13px;
+    }
+
+    .summary-value{
+        font-size:16px;
+    }
+
+    .cancel-btn{
+        font-size:14px;
+        padding:12px;
+    }
+
+    .order-summary{
+        position:static;
+        margin-top:20px;
+    }
+
+    .empty-text{
+        font-size:20px;
+    }
+
+}
+
+</style>
+
+<div class="container order-container ">
+
+    <h2 class="page-title mt-2 page" style="padding-top: 10px;">Order Details</h2>
+
+    <div class="row g-4">
+
+        <!-- LEFT SIDE : ITEMS -->
+
+        <div class="col-lg-8">
+
+            {% if data1 %}
+
+                {% for i in data1 %}
+
+                <div class="custom-card item-card">
+
+                    <div class="item-box">
+
+                        <img src="{{i.product.perfume_image.url}}" 
+                             alt=""
+                             class="item-img">
+
+                        <div>
+
+                            <div class="item-name">
+                                {{i.product.perfumename}}
+                            </div>
+
+                            <div class="item-qty">
+                                Quantity : {{i.quantity}}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="empty-text">No Orders Placed</p>
+
+            {% endif %}
+
+        </div>
+
+        <!-- RIGHT SIDE : SUMMARY -->
+
+        <div class="col-lg-4">
+
+            <div class="custom-card order-summary">
+
+                <h3 class="summary-title">Order Summary</h3>
+
+                <div class="summary-box">
+                    <div class="summary-label">Order ID</div>
+                    <div class="summary-value">#{{data.id}}</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Paid By</div>
+                    <div class="summary-value">{{data.paymentmethod}}</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Total Amount</div>
+                    <div class="summary-value">₹ {{data.totalamount}}</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Order Status</div>
+
+                    <div class="summary-value 
+                    
+                    {% if data.orderstatus == 'pending' %}
+                        pending
+                    {% elif data.orderstatus == 'delivered' %}
+                        delivered
+                    {% else %}
+                        cancelled
+                    {% endif %}
+                    
+                    ">
+                        {{data.orderstatus}}
+                    </div>
+
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Payment Status</div>
+                    <div class="summary-value">{{data.paymentstatus}}</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Tracking ID</div>
+                    <div class="summary-value">{{data.trackingid}}</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Carrier</div>
+                    <div class="summary-value">{{data.Carrier}}</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Order Date</div>
+                    <div class="summary-value">{{data.orderdate}}</div>
+                </div>
+
+                <div class="summary-box">
+                    <div class="summary-label">Delivery Date</div>
+                    <div class="summary-value">{{data.deliverydate}}</div>
+                </div>
+
+                {% if data.orderstatus == 'pending' %}
+
+                <form action="{% url 'cancelorder' data.id %}" method="POST">
+
+                    {% csrf_token %}
+
+                    <input type="submit"
+                           value="Cancel Order"
+                           class="cancel-btn">
+
+                </form>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% if messages %}
+    {% for msg in messages %}
+        <script>
+            alert('{{msg}}');
+        </script>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

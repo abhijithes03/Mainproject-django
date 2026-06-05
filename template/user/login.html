@@ -1,0 +1,63 @@
+{% extends 'common/base4.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5" style="min-height: calc(100vh - 95px);">
+    <div class="row justify-content-center align-items-center h-100">
+        <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-sm border-0 mx-auto" style="max-width: 420px; width: 100%;">
+                <div class="card-body p-4">
+                    <h2 class="card-title text-center mb-4">Login to your account</h2>
+
+                    {% if messages %}
+                        {% for msg in messages %}
+                            <div class="alert alert-{{ msg.tags|default:'info' }} alert-dismissible fade show" role="alert">
+                                {{ msg }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form action="{% url 'login' %}" method="POST" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="uname" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="uname" name="uname" placeholder="Enter your username" required>
+                            <div class="invalid-feedback">Please enter your username.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="pwrd" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="pwrd" name="pwrd" placeholder="Enter your password" required>
+                            <div class="invalid-feedback">Please enter your password.</div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <a href="{% url 'password_reset_request' %}" class="small text-decoration-none">Forgot password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-dark w-100">Login</button>
+                    </form>
+
+                    <p class="text-center text-muted mt-4 mb-0">Don’t have an account? <a href="{% url 'register' %}" class="text-decoration-none">Register here</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+</script>
+{% endblock %}

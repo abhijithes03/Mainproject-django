@@ -1,0 +1,635 @@
+{% extends 'common/base3.html' %}
+
+{% block content %}
+
+<style>
+
+body{
+    background-color:#f8f9fa;
+    padding-top:40px;
+}
+
+/* CONTAINER */
+
+.cart-container{
+    background-color:#ffffff;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    min-height:30vh;
+    transition:0.3s;
+}
+
+.cart-container:hover{
+    transform:translateY(-3px);
+}
+
+/* TITLE */
+
+.page-title{
+    font-size:36px;
+    font-weight:700;
+    color:#111;
+}
+
+/* TABLE */
+
+.table{
+    vertical-align:middle;
+    margin-bottom:0;
+}
+
+.table th{
+    background-color:#000;
+    color:#fff;
+    text-align:center;
+    padding:15px;
+    font-size:15px;
+    font-weight:600;
+}
+
+.table td{
+    text-align:center;
+    padding:18px 10px;
+    font-weight:500;
+    font-size:15px;
+}
+
+/* IMAGE */
+
+.cart-img{
+    width:70px;
+    height:90px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+/* QUANTITY BUTTONS */
+
+.qty-btn{
+    text-decoration:none;
+    font-size:22px;
+    color:#000;
+    padding:6px 10px;
+    transition:0.3s;
+}
+
+.qty-btn:hover{
+    color:#555;
+}
+
+/* DELETE BUTTON */
+
+.delete-btn{
+    text-decoration:none;
+    font-size:22px;
+    color:#6c757d;
+    transition:0.3s;
+}
+
+.delete-btn:hover{
+    color:red;
+}
+
+/* GRAND TOTAL */
+
+.total-box{
+    font-size:22px;
+    font-weight:700;
+    text-align:right;
+    margin-top:25px;
+    color:#111;
+}
+
+/* PAYMENT BUTTON */
+
+.pay-btn{
+    background-color:#000;
+    color:#fff;
+    border:none;
+    padding:12px 30px;
+    border-radius:10px;
+    font-weight:600;
+    transition:0.3s;
+    font-size:15px;
+}
+
+.pay-btn:hover{
+    background-color:#333;
+}
+
+/* EMPTY CART */
+
+.empty-cart{
+    min-height:45vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+}
+
+.empty-cart h2{
+    font-size:32px;
+    font-weight:700;
+    color:#444;
+}
+
+.empty-cart a{
+    text-decoration:none;
+    background-color:#000;
+    color:#fff;
+    padding:10px 24px;
+    border-radius:10px;
+    display:inline-block;
+    margin-top:20px;
+    transition:0.3s;
+}
+
+.empty-cart a:hover{
+    background-color:#333;
+}
+
+/* MOBILE */
+
+@media(max-width:576px){
+
+    body{
+        padding-top:20px;
+    }
+
+    .cart-container{
+        padding:15px !important;
+        border-radius:14px;
+    }
+
+    .page-title{
+        font-size:26px;
+    }
+
+    .table th,
+    .table td{
+        font-size:12px;
+        white-space:nowrap;
+        padding:10px 8px;
+    }
+
+    .cart-img{
+        width:50px;
+        height:65px;
+        border-radius:8px;
+    }
+
+    .qty-btn{
+        font-size:18px;
+        padding:2px 5px;
+    }
+
+    .delete-btn{
+        font-size:18px;
+    }
+
+    .total-box{
+        font-size:18px;
+        text-align:center;
+        margin-top:20px;
+    }
+
+    .pay-btn{
+        width:100%;
+        font-size:14px;
+        padding:10px 16px;
+    }
+
+    .empty-cart h2{
+        font-size:22px;
+    }
+
+    .empty-cart a{
+        width:100%;
+        text-align:center;
+        font-size:14px;
+    }
+
+}
+
+/* TABLET */
+
+@media(min-width:577px) and (max-width:991px){
+
+    .cart-container{
+        max-width:950px;
+        padding:25px !important;
+    }
+
+    .page-title{
+        font-size:32px;
+    }
+
+    .table th{
+        font-size:14px;
+        padding:13px;
+    }
+
+    .table td{
+        font-size:14px;
+        padding:14px 8px;
+    }
+
+    .cart-img{
+        width:65px;
+        height:85px;
+    }
+
+    .qty-btn{
+        font-size:20px;
+    }
+
+    .total-box{
+        font-size:20px;
+    }
+
+    .pay-btn{
+        font-size:15px;
+        padding:12px 24px;
+    }
+
+}
+
+/* NORMAL LAPTOP */
+
+@media(min-width:992px) and (max-width:1439px){
+
+    .cart-container{
+        max-width:1450px;
+        padding:35px !important;
+        border-radius:24px;
+    }
+
+    .page-title{
+        font-size:44px;
+        margin-bottom:35px !important;
+    }
+
+    .table th{
+        font-size:17px;
+        padding:18px;
+    }
+
+    .table td{
+        font-size:17px;
+        padding:22px 12px;
+    }
+
+    .cart-img{
+        width:95px;
+        height:120px;
+        border-radius:14px;
+    }
+
+    .qty-btn{
+        font-size:28px;
+    }
+
+    .delete-btn{
+        font-size:28px;
+    }
+
+    .total-box{
+        font-size:30px;
+        margin-top:35px;
+    }
+
+    .pay-btn{
+        font-size:18px;
+        padding:14px 34px;
+        border-radius:12px;
+    }
+
+    .empty-cart h2{
+        font-size:44px;
+    }
+    .product-section{
+    margin-top:70px !important;
+}
+
+}
+
+/* LARGE LAPTOP */
+
+@media(min-width:1440px){
+
+    .cart-container{
+        max-width:1800px;
+        padding:50px !important;
+        border-radius:30px;
+    }
+
+    .page-title{
+        font-size:58px;
+        margin-bottom:45px !important;
+    }
+
+    .table th{
+        font-size:22px;
+        padding:24px;
+    }
+
+    .table td{
+        font-size:21px;
+        padding:28px 16px;
+    }
+
+    .cart-img{
+        width:130px;
+        height:165px;
+        border-radius:18px;
+    }
+
+    .qty-btn{
+        font-size:34px;
+    }
+
+    .delete-btn{
+        font-size:34px;
+    }
+
+    .total-box{
+        font-size:40px;
+        margin-top:40px;
+    }
+
+    .pay-btn{
+        font-size:22px;
+        padding:16px 40px;
+        border-radius:14px;
+    }
+
+    .empty-cart h2{
+        font-size:58px;
+    }
+
+    .empty-cart a{
+        font-size:20px;
+        padding:14px 30px;
+    }
+    .product-section{
+    margin-top:100px !important;
+    }
+}
+
+/* 4K SCREEN */
+
+@media(min-width:2560px){
+
+    body{
+        padding-top:70px;
+    }
+
+    .cart-container{
+        max-width:2400px;
+        padding:40px !important;
+        border-radius:40px;
+    }
+
+    .page-title{
+        font-size:82px;
+        margin-bottom:60px !important;
+    }
+
+    .table th{
+        font-size:32px;
+        padding:34px;
+    }
+
+    .table td{
+        font-size:30px;
+        padding:38px 20px;
+    }
+
+    .cart-img{
+        width:200px;
+        height:260px;
+        border-radius:24px;
+    }
+
+    .qty-btn{
+        font-size:48px;
+        padding:10px 18px;
+    }
+
+    .delete-btn{
+        font-size:48px;
+    }
+
+    .total-box{
+        font-size:58px;
+        margin-top:50px;
+    }
+
+    .pay-btn{
+        font-size:32px;
+        padding:22px 55px;
+        border-radius:18px;
+    }
+
+    .empty-cart h2{
+        font-size:82px;
+    }
+
+    .empty-cart a{
+        font-size:30px;
+        padding:18px 40px;
+        border-radius:16px;
+    }
+    .product-section{
+    margin-top:150px !important;
+}
+
+}
+
+
+</style>
+
+
+
+<div class="container mt-5 mb-5 p-4 cart-container product-section">
+
+{% if data %}
+
+    <h2 class="text-center mb-4 page-title">
+        My Cart
+    </h2>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Adjust Quantity</th>
+                    <th>Total Price</th>
+                    <th>Remove</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for i in data %}
+
+                <tr>
+
+                    <td>
+
+                        <img src="{{i.item.perfume_image.url}}"
+                             class="cart-img">
+
+                    </td>
+
+                    <td>
+                        {{i.item.perfumename}}
+                    </td>
+
+                    <td>
+                        {{i.quantity}}
+                    </td>
+
+                    <td>
+                        ₹ {{i.price}}
+                    </td>
+
+                    <td>
+
+                        <div class="d-flex justify-content-center align-items-center gap-3">
+
+                            {% if i.quantity < i.item.perfume_stock %}
+
+                                <a href="{% url 'addqnty' i.item.id %}"
+                                   class="qty-btn">
+
+                                   ➕
+
+                                </a>
+
+                            {% else %}
+
+                                <span style="font-size:22px;color:grey;cursor:not-allowed">
+
+                                    ➕
+
+                                </span>
+
+                            {% endif %}
+
+
+
+                            <a href="{% url 'subqnty' i.item.id %}"
+                               class="qty-btn">
+
+                               ➖
+
+                            </a>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+
+                        ₹ {{i.total_price}}
+
+                    </td>
+
+                    <td>
+
+                        <a href="{% url 'removecart' i.item.id %}"
+                           class="delete-btn">
+
+                           🗑️
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+
+    <!-- GRAND TOTAL -->
+
+    <div class="total-box">
+
+        Grand Total : ₹ {{data2}}
+
+    </div>
+
+
+
+    <!-- PAYMENT BUTTON -->
+
+    <div class="text-end mt-4">
+
+        <form action="{% url 'pay' %}" method="POST">
+
+            {% csrf_token %}
+
+            <input type="submit"
+                   value="Proceed to Pay"
+                   class="pay-btn">
+
+        </form>
+
+    </div>
+
+
+
+{% else %}
+
+    <!-- EMPTY CART -->
+
+    <div class="empty-cart">
+
+        <h2>
+            Your cart is empty
+        </h2>
+
+        <a href="{% url 'userhome' %}">
+            Add Items
+        </a>
+
+    </div>
+
+{% endif %}
+
+</div>
+
+
+
+{% if messages %}
+
+    {% for msg in messages %}
+
+    <script>
+        alert('{{msg}}');
+    </script>
+
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}
