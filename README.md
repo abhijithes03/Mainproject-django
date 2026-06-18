@@ -32,7 +32,7 @@ Perfume E-Commerce Management System is a web application built with Django that
 
 Home Page
 
- ![1](https://github.com/user-attachments/assets/ae1ac607-e69f-44ad-8b79-58d6dcf36c41)
+ ![1](screenshot/home.png)
 
 User Home
 
