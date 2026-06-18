@@ -36,27 +36,27 @@ Home Page
 
 User Home
 
-![2](https://github.com/user-attachments/assets/33109c28-d612-410d-b061-5c7b1a47d564)
+![2](screenshot/userhome.png)
 
 Prdoucts
 
-![3](https://github.com/user-attachments/assets/4a1144e1-2b29-4c54-a612-73a90d61540b)
+![3](screenshot/product.png)
 
 Cart
 
-![4](https://github.com/user-attachments/assets/009a2c48-84c9-4690-9994-afab8e6ceba7)
+![4](screenshot/cart.png)
 
 Wishlist
 
-![5](https://github.com/user-attachments/assets/73e60de1-d649-461c-b8d1-5807fc60af4a)
+![5](screenshot/wishlist.png)
 
 User Orders
 
-![6](https://github.com/user-attachments/assets/b1d57014-a28f-4fdd-9db8-8e8b9f7fd154)
+![6](screenshot/orders.png)
 
 User Profile
 
-![7](https://github.com/user-attachments/assets/8c14731a-204c-4312-a1fb-c05d3b7b2cde)
+![7](screenshot/profile.png)
 ## Demo
 
 https://github.com/user-attachments/assets/2458922e-a13b-499b-b732-2808a95bb2d2
