@@ -58,6 +58,6 @@ User Profile
 
 ![7](screenshot/profile.png)
 ## Demo
-
+Download the demo video
 https://github.com/user-attachments/assets/2458922e-a13b-499b-b732-2808a95bb2d2
 
